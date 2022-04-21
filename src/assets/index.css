@@ -3,36 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  h1 {
-    @apply text-xl font-heading font-bold md:text-3xl;
-  }
-  h2 {
-    @apply font-heading text-xl md:text-2xl;
-  }
-  h3 {
-    @apply font-text text-base md:text-lg;
-  }
-  h4 {
-    @apply font-heading text-xs md:text-lg;
-  }
-  h5 {
-    @apply font-text text-xs md:text-base;
-  }
-  hr {
-    @apply border-primary mt-1 my-4;
-  }
-}
-
-body {
-  @apply bg-secondary/90 text-white font-text;
-}
-
-/* Pre configured class */
-.router-link-active {
-  @apply bg-primary;
-}
-
 .t-main-set {
   @apply lg:container lg:mx-auto md:px-20 2xl:px-40;
 }
@@ -47,7 +17,7 @@ body {
   @apply my-4 md:my-20 w-11/12 md:w-2/3 lg:w-3/5 mx-auto;
 }
 .t-auth-form {
-  @apply bg-secondary shadow-md rounded p-6;
+  @apply bg-green-200 shadow-md rounded p-6;
 }
 /* AUTH */
 

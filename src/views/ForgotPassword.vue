@@ -8,13 +8,13 @@
         <input class="t-input" type="text" id="email" placeholder="Email" />
       </div>
       <div class="flex justify-between items-center">
-        <button type="submit" class="t-btn inline-flex items-center bg-primary">
+        <button type="submit" class="t-btn inline-flex items-center bg-blue-800">
           <Loading class="h-5 w-5" v-show="loading" />
           Submit
         </button>
         <h5>
           Remembered Password?
-          <router-link :to="{ name: 'Login' }" class="text-primary"
+          <router-link :to="{ name: 'Login' }" class="text-blue-800"
             >Login
           </router-link>
         </h5>
@@ -23,7 +23,7 @@
       <div
         v-if="message.length > 0"
         :class="`mt-4 p-4 rounded ${
-          message.substr(0, 5) !== 'Email' ? 'bg-error' : 'bg-primary'
+          message.substr(0, 5) !== 'Email' ? 'bg-red-500' : 'bg-blue-800'
         }`"
       >
         {{ message }}

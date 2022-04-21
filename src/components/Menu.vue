@@ -4,7 +4,7 @@
     <div>
       <button
         type="button"
-        class="text-lg h-8 w-8 rounded-full hover:bg-primary"
+        class="text-lg h-8 w-8 rounded-full hover:bg-blue-300"
         aria-expanded="false"
         aria-haspopup="true"
         @click="toggle"
@@ -15,19 +15,7 @@
     <transition name="fade">
       <div
         v-if="show"
-        class="
-          origin-top-right
-          absolute
-          right-0
-          mt-2
-          w-32
-          rounded-md
-          shadow-lg
-          py-1
-          bg-gray-800
-          text-white
-          font-heading
-        "
+        class="origin-top-right absolute right-0 mt-2 w-32 rounded-md shadow-lg py-1 bg-gray-800 text-white font-heading"
         role="menu"
         aria-orientation="vertical"
         aria-labelledby="user-menu-button"
@@ -65,12 +53,13 @@ export default defineComponent({
     const menuAuth = [
       { name: "Home", link: { name: "Home" } },
       { name: "Profile", link: { name: "Profile" } },
-      { name: "Database", link: { name: "Database" } },
+      { name: "RegistrarAlumno", link: { name: "RegistrarAlumno" } },
+      { name: "Crear", link: { name: "Crear" } },
     ];
     const menuNoAuth = [
       { name: "Home", link: { name: "Home" } },
-      { name: "Login", link: { name: "Login" } },
-      { name: "Signup", link: { name: "SignUp" } },
+      { name: "Login",link: { name: "Login" } },
+      { name: "Signup",link: { name: "SignUp" } },
     ];
 
     const show = ref(false);
@@ -93,7 +82,7 @@ export default defineComponent({
 
 <style lang="postcss" scoped>
 .menu-button {
-  @apply py-2 px-4 ml-2 font-heading rounded bg-primary
+  @apply py-2 px-4 ml-2 font-heading rounded bg-button
   hover:bg-opacity-75;
 }
 .fade-enter-active,

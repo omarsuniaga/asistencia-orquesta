@@ -65,14 +65,14 @@
         </p>
       </div>
       <div class="flex justify-between items-center">
-        <button type="submit" class="t-btn inline-flex items-center bg-primary">
+        <button type="submit" class="t-btn inline-flex items-center bg-blue-400">
           <Loading class="h-5 w-5" v-if="loading" />
           <font-awesome-icon :icon="['fas', 'user-plus']" class="mr-2" v-else />
           Sign Up
         </button>
         <h5 class="mr-1">
           Already Signed Up?
-          <router-link :to="{ name: 'Login' }" class="text-primary">
+          <router-link :to="{ name: 'Login' }" class="text-blue-400">
             Login
           </router-link>
         </h5>

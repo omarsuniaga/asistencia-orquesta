@@ -1,55 +1,109 @@
 <template>
-  <section class="p-4 bg-secondary">
-    <h1>Welcome, {{ user?.displayName }}</h1>
-    <button
-      class="my-4 t-btn inline-flex items-center bg-error"
-      @click="signOutUser"
-    >
-      <Loading class="h-5 w-5" v-if="loading" />
-      <font-awesome-icon :icon="['fas', 'sign-out-alt']" class="mr-2" v-else />
-      LogOut
-    </button>
-
-    <Dialog
-      button-name="About Me"
-      title="About Me"
-      description="Hello there, this is Sushil Kamble. I have created a
-      authetication demo using Vue 3, Firebase 9 and Tailwind. Features included are sign up 
-      form validation, navigation guard, firestore read and write demo, page transition,
-      and this reuseable modal."
-      :icon="['fas', 'info-circle']"
-    />
+  <section>
+    <!-- listado de alumnos en tailwind -->
+    <div class="-my-2 sm:-mx-6 lg:-mx-8">
+      <div class="py-1 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+        <div class="shadow-md overflow-hidden sm:rounded-lg">
+          <div
+            scope="col"
+            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+          >
+            <h1 class="text-black mx-3 text-center">LISTADO</h1>
+          </div>
+          <table class="min-w-full divide-gray-200">
+            <div>
+              <router-link
+                v-for="item in LISTADOS"
+                :key="item.id"
+                class="hover:bg-violet-400 divide-gray-800 bg-white active:bg-violet-600 border-b border-gray-400 flex justify-between m-2"
+                :to="{
+                  name: 'Alumno',
+                  paths: '/Alumno:' + item.id,
+                  params: { id: item.id },
+                }"
+              >
+                <div class="h-14 w-14 m-1">
+                  <img class="rounded-full" :src="item.foto" alt="" />
+                </div>
+                <div class="px-1 py-1">
+                  <div class="flex text-center">
+                    <div class="ml-2">
+                      <div class="text-sm font-medium text-gray-900">
+                        {{ item.nombre }}
+                        {{ item.apellido }}
+                      </div>
+                      <div class="text-sm text-gray-500">
+                        {{ item.grupo }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="m-2 flex items-center">
+                  <font-awesome-icon
+                    :icon="['fas', 'angle-right']"
+                    class="mr-1"
+                  />
+                </div>
+              </router-link>
+            </div>
+          </table>
+        </div>
+      </div>
+    </div>
   </section>
 </template>
 
 <script>
-import { useAuthState, useSignOut } from "@/firebase";
-import { useRouter } from "vue-router";
-import { defineComponent, ref } from "vue";
-import Dialog from "@/components/Dialog.vue";
+import {
+  getAlumnos,
+  deleteAlumno,
+  onSnapshot,
+  collection,
+  db,
+} from "../firebase.js";
+import { defineComponent, ref, reactive, watchEffect } from "vue";
 import Loading from "@/components/Loading.vue";
-
 export default defineComponent({
-  name: "Home",
+  name: "Dashboard",
   components: {
-    Dialog,
     Loading,
   },
   setup() {
-    const { user } = useAuthState();
-    const router = useRouter();
-
+    /**Variables Globales */
+    const LISTADOS = reactive([]);
     const loading = ref(false);
+    // watchEffect(() => LISTADOS);
 
-    const signOutUser = async () => {
-      loading.value = true;
-      await useSignOut();
-      await router.replace({ name: "Login" });
-      loading.value = false;
+    /* Metodos */
+    const getListado = async () => {
+      onSnapshot(collection(db, "ALUMNOS"), (querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          LISTADOS.push({
+            ...doc.data(),
+            // id: doc.id,
+          });
+        });
+      });
     };
 
-    return { user, signOutUser, loading };
+    const delect = async (id) => {
+      await deleteAlumno(id);
+      console.log("Eliminando...", id);
+      return;
+    };
+    const edit = async (id) => {
+      console.log("Editando...", id);
+    };
+
+    getListado();
+    return {
+      loading,
+      LISTADOS,
+      getAlumnos,
+      delect,
+      edit,
+      deleteAlumno,
+    };
   },
 });
 </script>
-

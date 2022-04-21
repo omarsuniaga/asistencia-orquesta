@@ -1,30 +1,26 @@
+<script setup></script>
 <template>
-  <section class="p-4 bg-secondary w-full">
-    <h1>Vue-Tail-Fire</h1>
-    <hr />
-    <h2 class="mb-2">Pages</h2>
-    <ul class="list-disc list-inside">
-      <li>Home Page</li>
-      <li>Login Page</li>
-      <li>Sign Up Page</li>
-      <li>Forgot Password Page</li>
-      <li>Profile Page - <code>Auth required</code></li>
-      <li>Database Page - <code>Auth required</code></li>
-    </ul>
-    <h2 class="my-2">Fonts and colors</h2>
-    <ul class="list-disc list-inside">
-      <li>Font - <code>Ubuntu (font-text) & Goldman (font-heading)</code></li>
-      <li>Primary Color - <code>Tailwind - colors.blue["500"]</code></li>
-      <li>Secondary Color - <code>Tailwind - colors.coolGray["700"]</code></li>
-      <li>Background Color - <code>Tailwind - .bg-secondary/90</code></li>
-      <li>Error Color - <code>Tailwind - colors.red["500"]</code></li>
-    </ul>
-  </section>
+  <div class="container min-w-full">
+    <h1 class="flex justify-center">HOME</h1>
+    <div class="grid grid-cols-3 items-center align-middle text-center">
+      <a
+        class="bg-green-600 hover:bg-green-500 text-white font-sans py-2 px-4 rounded-full"
+        href="/inicio"
+      >
+        Pasar Lista
+      </a>
+      <a
+        class="bg-green-600 hover:bg-green-500 text-white font-sans py-2 px-4 rounded-full"
+        href="/RegistrarAlumno"
+      >
+        Nuevo Alumno
+      </a>
+      <a
+        class="bg-green-600 hover:bg-green-500 text-white font-sans py-2 px-4 rounded-full"
+        href="/Profile"
+      >
+        Listado de Inscritos
+      </a>
+    </div>
+  </div>
 </template>
-
-<style lang="postcss" scoped>
-code {
-  @apply bg-gray-800 px-2 mx-2;
-}
-</style>
-

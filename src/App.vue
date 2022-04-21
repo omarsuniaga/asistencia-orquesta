@@ -8,7 +8,7 @@
   </div>
   <div v-else class="flex flex-col min-h-screen">
     <Navbar />
-    <div class="t-main-set flex-1 grid place-items-center">
+    <div class="flex-1 grid place-items-center">
       <router-view v-slot="{ Component, route }">
         <transition name="slide" mode="out-in">
           <component :is="Component" :key="route.path" />

@@ -1,43 +1,35 @@
 <template>
   <nav class="t-transition-effect nav-style px-2 md:px-0">
     <div class="t-main-set flex justify-between items-center">
-      <h1 class="font-bold text-primary cursor-pointer" @click="goToHome">
-        My App
-      </h1>
+      <h2 class="font-bold text-blue-800 cursor-pointer" @click="goToHome">
+        Asistencia System
+      </h2>
       <div class="hidden md:block" v-if="user">
-        <router-link :to="{ name: 'Home' }" class="nav-link t-transition-effect"
-          >Home
+        <router-link
+          :to="{ name: 'Inicio' }"
+          class="nav-link t-transition-effect"
+          >Inicio
         </router-link>
         <router-link
           :to="{ name: 'Profile' }"
           class="nav-link t-transition-effect"
         >
-          Profile
+          Perfil
         </router-link>
         <router-link
-          :to="{ name: 'Database' }"
+          :to="{ name: 'RegistrarAlumno' }"
           class="nav-link t-transition-effect"
-          >Database
+          >Registrar Alumno
         </router-link>
         <a
-          class="
-            t-transition-effect
-            py-2
-            px-4
-            ml-4
-            font-heading
-            rounded
-            cursor-pointer
-            bg-error
-            hover:bg-opacity-75
-          "
+          class="t-transition-effect py-2 px-4 ml-4 font-heading rounded cursor-pointer bg-error hover:bg-opacity-75"
           @click="signOutUser"
           >Log Out
         </a>
       </div>
       <div class="hidden md:block" v-else>
         <router-link :to="{ name: 'Home' }" class="nav-link t-transition-effect"
-          >Home
+          >Inicio
         </router-link>
         <router-link
           :to="{ name: 'Login' }"
@@ -49,7 +41,7 @@
           :to="{ name: 'SignUp' }"
           class="nav-link t-transition-effect"
         >
-          Sign Up
+          Registrar
         </router-link>
       </div>
       <div class="block md:hidden">
@@ -84,12 +76,12 @@ export default defineComponent({
 <style lang="postcss" scoped>
 .nav-style {
   @apply py-4 px-2 top-0 z-10 sticky
-  shadow-md bg-black
-  bg-opacity-20
+  shadow-md bg-white
+  bg-opacity-30
   backdrop-filter backdrop-blur-sm;
 }
 .nav-link {
   @apply py-2 px-4 ml-2 font-heading rounded
-  hover:bg-primary;
+  hover:bg-gray-400;
 }
 </style>

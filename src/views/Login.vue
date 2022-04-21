@@ -23,7 +23,10 @@
         />
       </div>
       <div class="flex justify-between items-center">
-        <button type="submit" class="t-btn inline-flex items-center bg-primary">
+        <button
+          type="submit"
+          class="t-btn inline-flex items-center bg-blue-400"
+        >
           <Loading class="h-5 w-5" v-if="loading" />
           <font-awesome-icon
             :icon="['fas', 'sign-in-alt']"
@@ -34,7 +37,7 @@
         </button>
         <h5 class="mr-1">
           Don't have an account?
-          <router-link :to="{ name: 'SignUp' }" class="text-primary"
+          <router-link :to="{ name: 'SignUp' }" class="text-blue-400"
             >Sign Up
           </router-link>
         </h5>
@@ -42,7 +45,7 @@
       <button
         type="button"
         @click="googleSignUp"
-        class="mt-4 t-btn w-full inline-flex items-center bg-primary"
+        class="mt-4 t-btn w-full inline-flex items-center bg-blue-400"
       >
         <font-awesome-icon :icon="['fab', 'google']" class="mr-2" />
         Sign in with Google
@@ -94,7 +97,7 @@ export default {
       ) {
         try {
           await signInWithEmailAndPassword(auth, email.value, password.value);
-          await router.replace({ name: "Profile" });
+          await router.replace({ name: "Inicio" });
         } catch (e) {
           error.value = e.message;
         }
@@ -110,7 +113,7 @@ export default {
       try {
         const result = await signInWithPopup(auth, provider);
         GoogleAuthProvider.credentialFromResult(result);
-        router.replace({ name: "Profile" });
+        router.replace({ name: "Inicio" });
       } catch (e) {
         error.value = e.message;
       }
@@ -119,4 +122,3 @@ export default {
   },
 };
 </script>
-

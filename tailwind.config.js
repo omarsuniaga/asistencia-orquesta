@@ -5,18 +5,19 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        heading: ["Goldman", "cursive"],
-        text: ["Ubuntu", "sans-serif"]
+        heading: ["Dongle", "Helvetica"],
+        text: ["Open Sans", "Helvetica"],
       },
       colors: {
-        primary: colors.sky["500"],
-        secondary: colors.slate["700"],
-        error: colors.red["500"]
-      }
-    }
+        primary: colors.sky["800"],
+        secondary: colors.gray["200"],
+        button: colors.sky["500"],
+        error: colors.red["500"],
+      },
+    },
   },
   variants: {
-    extend: {}
+    extend: {},
   },
-  plugins: []
+  plugins: [],
 };

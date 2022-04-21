@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button type="button" @click="openModal" class="t-btn bg-primary">
+    <button type="button" @click="openModal" class="t-btn bg-blue-300">
       <font-awesome-icon :icon="icon" class="mr-1" />
       {{ buttonName }}
     </button>
@@ -25,20 +25,7 @@
             leave-to="opacity-0 scale-90"
           >
             <div
-              class="
-                inline-block
-                w-full
-                max-w-md
-                p-6
-                overflow-hidden
-                text-left
-                align-middle
-                transition-all
-                transform
-                bg-secondary
-                shadow-xl
-                rounded-2xl
-              "
+              class="inline-block w-full max-w-md p-6 overflow-hidden text-left align-middle transition-all transform bg-orange-200 shadow-xl rounded-2xl"
             >
               <DialogTitle as="h2">
                 {{ title }}
@@ -52,7 +39,7 @@
               <div class="mt-4">
                 <button
                   type="button"
-                  class="inline-flex justify-center t-btn bg-primary"
+                  class="inline-flex justify-center t-btn bg-blue-200"
                   @click="closeModal"
                 >
                   Close

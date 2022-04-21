@@ -5,53 +5,73 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: () => import("@/views/Home.vue")
+    component: () => import("@/views/Home.vue"),
   },
   {
-    path: "/profile",
+    path: "/Inicio",
+    name: "Inicio",
+    component: () => import("@/views/Inicio.vue"),
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/Profile",
     name: "Profile",
     component: () => import("@/views/Profile.vue"),
-    meta: { requiresAuth: true }
+    meta: { requiresAuth: true },
   },
+  {
+    path: "/Alumno/:id",
+    name: "Alumno",
+    component: () => import("@/views/Alumno.vue"),
+    meta: { requiresAuth: true },
+  },
+  // open user Profile
+
   {
     path: "/auth/login",
     name: "Login",
     component: () => import("@/views/Login.vue"),
-    meta: { noAuth: true }
+    meta: { noAuth: true },
   },
   {
     path: "/auth/signup",
     name: "SignUp",
     component: () => import("@/views/SignUp.vue"),
-    meta: { noAuth: true }
+    meta: { noAuth: true },
   },
   {
     path: "/auth/forgot-password",
     name: "ForgotPassword",
     component: () => import("@/views/ForgotPassword.vue"),
-    meta: { noAuth: true }
+    meta: { noAuth: true },
   },
   {
-    path: "/database",
-    name: "Database",
-    component: () => import("@/views/Database.vue"),
-    meta: { requiresAuth: true }
+    path: "/RegistrarAlumno",
+    name: "RegistrarAlumno",
+    component: () => import("@/views/RegistrarAlumno.vue"),
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/Create",
+    name: "Crear",
+    component: () => import("@/components/Alumnos/Create.vue"),
+    meta: { requiresAuth: true },
   },
   {
     path: "/:pathMatch(.*)*",
     name: "NotFound",
-    component: () => import("@/views/404.vue")
-  }
+    component: () => import("@/views/404.vue"),
+  },
 ];
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
-  routes
+  history: createWebHistory(),
+  routes,
 });
 
 router.beforeEach(async (to, from, next) => {
-  const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
-  const noAuth = to.matched.some(record => record.meta.noAuth);
+  const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
+  const noAuth = to.matched.some((record) => record.meta.noAuth);
 
   const isAuth = await getUserState();
 
