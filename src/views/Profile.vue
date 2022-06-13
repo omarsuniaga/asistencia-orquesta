@@ -25,6 +25,7 @@
                 <div class="h-14 w-14 m-1">
                   <img class="rounded-full" :src="item.foto" alt="" />
                 </div>
+                
                 <div class="px-1 py-1">
                   <div class="flex text-center">
                     <div class="ml-2">

@@ -3,7 +3,7 @@ import { getUserState } from "@/firebase";
 
 const routes = [
   {
-    path: "/",
+    path: "/home",
     name: "Home",
     component: () => import("@/views/Home.vue"),
   },
@@ -14,15 +14,9 @@ const routes = [
     meta: { requiresAuth: true },
   },
   {
-    path: "/Profile",
+    path: "/profile",
     name: "Profile",
     component: () => import("@/views/Profile.vue"),
-    meta: { requiresAuth: true },
-  },
-  {
-    path: "/Alumno/:id",
-    name: "Alumno",
-    component: () => import("@/views/Alumno.vue"),
     meta: { requiresAuth: true },
   },
   // open user Profile

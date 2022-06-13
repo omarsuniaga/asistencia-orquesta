@@ -1,0 +1,141 @@
+[debug] [2022-06-13T18:16:59.229Z] ----------------------------------------------------------------------
+[debug] [2022-06-13T18:16:59.231Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\OmaryJennyPC\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2022-06-13T18:16:59.232Z] CLI Version:   11.0.1
+[debug] [2022-06-13T18:16:59.232Z] Platform:      win32
+[debug] [2022-06-13T18:16:59.232Z] Node Version:  v16.15.1
+[debug] [2022-06-13T18:16:59.234Z] Time:          Mon Jun 13 2022 14:16:59 GMT-0400 (hora de Venezuela)
+[debug] [2022-06-13T18:16:59.234Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-06-13T18:16:59.328Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-06-13T18:16:59.328Z] > authorizing via signed-in user (omareduardo74@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\OmaryJennyPC\Desktop\Practicas\VITE\vue-tail-fire
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2022-06-13T18:17:32.629Z] Using project from CLI flag: vueauthfire
+[debug] [2022-06-13T18:17:32.631Z] > refreshing access token with scopes: []
+[debug] [2022-06-13T18:17:32.632Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2022-06-13T18:17:32.936Z] <<< HTTP RESPONSE 400 {"pragma":"no-cache","cache-control":"no-cache, no-store, max-age=0, must-revalidate","date":"Mon, 13 Jun 2022 18:17:31 GMT","expires":"Mon, 01 Jan 1990 00:00:00 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-06-13T18:17:32.938Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/vueauthfire [none]
+[debug] [2022-06-13T18:17:33.193Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/vueauthfire 401
+[debug] [2022-06-13T18:17:33.193Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/vueauthfire {"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED"}}
+[debug] [2022-06-13T18:17:33.194Z] HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+[debug] [2022-06-13T18:17:33.385Z] FirebaseError: HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+    at module.exports (C:\Users\OmaryJennyPC\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:47:12)
+    at RetryOperation._fn (C:\Users\OmaryJennyPC\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:286:39)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[error] 
+[error] Error: Failed to get Firebase project vueauthfire. Please make sure the project exists and your account has permission to access it.
+[debug] [2022-06-13T18:22:29.708Z] ----------------------------------------------------------------------
+[debug] [2022-06-13T18:22:29.710Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\OmaryJennyPC\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2022-06-13T18:22:29.711Z] CLI Version:   11.0.1
+[debug] [2022-06-13T18:22:29.711Z] Platform:      win32
+[debug] [2022-06-13T18:22:29.712Z] Node Version:  v16.15.1
+[debug] [2022-06-13T18:22:29.713Z] Time:          Mon Jun 13 2022 14:22:29 GMT-0400 (hora de Venezuela)
+[debug] [2022-06-13T18:22:29.713Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-06-13T18:22:29.804Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-06-13T18:22:29.804Z] > authorizing via signed-in user (omareduardo74@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\OmaryJennyPC\Desktop\Practicas\VITE\vue-tail-fire
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2022-06-13T18:22:43.456Z] Using project from CLI flag: vueauthfire
+[debug] [2022-06-13T18:22:43.458Z] > refreshing access token with scopes: []
+[debug] [2022-06-13T18:22:43.458Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2022-06-13T18:22:43.765Z] <<< HTTP RESPONSE 400 {"date":"Mon, 13 Jun 2022 18:22:42 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","pragma":"no-cache","expires":"Mon, 01 Jan 1990 00:00:00 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-06-13T18:22:43.768Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/vueauthfire [none]
+[debug] [2022-06-13T18:22:44.069Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/vueauthfire 401
+[debug] [2022-06-13T18:22:44.070Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/vueauthfire {"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED"}}
+[debug] [2022-06-13T18:22:44.070Z] HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+[debug] [2022-06-13T18:22:44.306Z] FirebaseError: HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+    at module.exports (C:\Users\OmaryJennyPC\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:47:12)
+    at RetryOperation._fn (C:\Users\OmaryJennyPC\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:286:39)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[error] 
+[error] Error: Failed to get Firebase project vueauthfire. Please make sure the project exists and your account has permission to access it.
+[debug] [2022-06-13T18:23:29.732Z] ----------------------------------------------------------------------
+[debug] [2022-06-13T18:23:29.735Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\OmaryJennyPC\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2022-06-13T18:23:29.736Z] CLI Version:   11.0.1
+[debug] [2022-06-13T18:23:29.736Z] Platform:      win32
+[debug] [2022-06-13T18:23:29.736Z] Node Version:  v16.15.1
+[debug] [2022-06-13T18:23:29.737Z] Time:          Mon Jun 13 2022 14:23:29 GMT-0400 (hora de Venezuela)
+[debug] [2022-06-13T18:23:29.737Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-06-13T18:23:29.831Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-06-13T18:23:29.832Z] > authorizing via signed-in user (omareduardo74@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\OmaryJennyPC\Desktop\Practicas\VITE\vue-tail-fire
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2022-06-13T18:23:51.496Z] Using project from CLI flag: vueauthfire
+[debug] [2022-06-13T18:23:51.498Z] > refreshing access token with scopes: []
+[debug] [2022-06-13T18:23:51.499Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2022-06-13T18:23:51.759Z] <<< HTTP RESPONSE 400 {"expires":"Mon, 01 Jan 1990 00:00:00 GMT","date":"Mon, 13 Jun 2022 18:23:50 GMT","pragma":"no-cache","cache-control":"no-cache, no-store, max-age=0, must-revalidate","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-06-13T18:23:51.762Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/vueauthfire [none]
+[debug] [2022-06-13T18:23:52.022Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/vueauthfire 401
+[debug] [2022-06-13T18:23:52.022Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/vueauthfire {"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED"}}
+[debug] [2022-06-13T18:23:52.023Z] HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+[debug] [2022-06-13T18:23:52.466Z] FirebaseError: HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+    at module.exports (C:\Users\OmaryJennyPC\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:47:12)
+    at RetryOperation._fn (C:\Users\OmaryJennyPC\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:286:39)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[error] 
+[error] Error: Failed to get Firebase project vueauthfire. Please make sure the project exists and your account has permission to access it.

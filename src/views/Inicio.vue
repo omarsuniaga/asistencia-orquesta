@@ -31,7 +31,7 @@ TABLAS/VARIABLES - GLOBALES:
 */
 
 import { provide, onMounted, ref, watchEffect } from "vue";
-import { db, searchAlumno } from "../firebase";
+import { db, searchAlumno, getAsignaturas } from "../firebase";
 import {
   collection,
   getDocs,
@@ -53,91 +53,148 @@ const PRESENTES = ref([]);
 const AUSENTES = ref([]);
 const FECHAHOY = moment().format("YYYY-MM-DD");
 const FECHA = ref(FECHAHOY);
-const CLASE = ref([
-  { text: "Teoria y Solfeo", value: "Teoria-Solfeo" },
-  { text: "Orquesta", value: "Orquesta" },
-  { text: "Coro", value: "Coro" },
-]);
+const GRUPO = ref([]);
+var EDITABLE = ref(null);
+const selected = ref("TODOS");
 
-watchEffect(() => (FECHA.value !== FECHAHOY ? init() : null));
+/*
+ PROCESO NUMERO 1 => [IniciarPorGrupo]:
+
+
+ * PERMITE BUSCAR A LOS ALUMNOS SEGUN EL GRUPO SELECCIONADO
+ * ENVIA A LOS ALUMNOS ENCONTRADOS A [FETCH ALUMNOS]
+ */
+const IniciarPorGrupo = async () => {
+  let listadoRef = collection(db, "ALUMNOS");
+  let q = query(listadoRef, where("grupo", "==", selected.value));
+  let querySnapshot = await getDocs(q);
+  if (querySnapshot.empty) {
+    limpiarColumna();
+  } else {
+    limpiarColumna();
+    querySnapshot.forEach((doc) => {
+      return fetchAlumnos(doc.data());
+      // return await llenarListado(querySnapshot.docs[0].data());
+    });
+  }
+};
+
+const IniciarPorFecha = async () => {
+  let listadoRef = collection(db, "ASISTENCIA");
+  let q = query(listadoRef, where("FECHA", "==", FECHA.value));
+  let querySnapshot = await getDocs(q);
+  if (querySnapshot.empty) {
+    limpiarColumna();
+    MostrarTodos();
+  } else {
+    limpiarColumna();
+    querySnapshot.forEach((doc) => {
+      EDITABLE.value = false;
+      PRESENTES.value = doc
+        .data()
+        .listaPresentes.filter((e) => e.estado === true);
+      LISTADOS.value = doc
+        .data()
+        .listaAusentes.filter((e) => e.estado === false);
+    });
+  }
+};
+
+const MostrarTodos = async () => {
+  let listadoRef = collection(db, "ALUMNOS");
+  let querySnapshot = await getDocs(listadoRef);
+  querySnapshot.forEach((doc) => {
+    // selected.value = "TODOS";
+    return fetchAlumnos(doc.data());
+    // return await llenarListado(querySnapshot.docs[0].data());
+  });
+};
+
+const FiltrarGrupoFecha = async () => {
+  let listadoRef = collection(db, "ASISTENCIA");
+  let q = query(
+    listadoRef,
+    where("FECHA", "==", FECHA.value)
+    // where("GRUPO", "==", selected.value)
+  );
+  let querySnapshot = await getDocs(q);
+  if (querySnapshot.empty) {
+    limpiarColumna();
+    EDITABLE.value = true;
+    console.log("VACIO");
+  } else {
+    limpiarColumna();
+    querySnapshot.forEach((doc) => {
+      EDITABLE.value = true;
+      selected.value = doc.data().GRUPO;
+      PRESENTES.value = doc
+        .data()
+        .listaPresentes.filter((e) => e.estado === true);
+      LISTADOS.value = doc
+        .data()
+        .listaAusentes.filter((e) => e.estado === false);
+    });
+  }
+};
+
+watchEffect(() =>
+  FECHA.value === FECHAHOY ? IniciarPorFecha() : FiltrarGrupoFecha()
+);
+watchEffect(() =>
+  selected.value === "TODOS" ? MostrarTodos() : IniciarPorGrupo()
+);
 
 provide("ALUMNOS", ALUMNOS);
 provide("LISTADOS", LISTADOS);
 provide("PRESENTES", PRESENTES);
 provide("AUSENTES", AUSENTES);
 provide("FECHAHOY", FECHAHOY);
-provide("CLASE", CLASE);
+provide("GRUPO", GRUPO);
 
 onMounted(async () => {
-  init(); //BUSCAR POR FECHA
+  const asig = await getAsignaturas();
+  asig.docs.forEach((doc) => GRUPO.value.push(doc.id));
+  FECHA.value === FECHAHOY ? IniciarPorFecha() : FiltrarGrupoFecha();
 });
-
-// CREA LA TARJETA DE LOS ALUMNOS
-const fetchAlumnos = async () => {
-  const alumnoRef = collection(db, "ALUMNOS");
-  const querySnapshot = await getDocs(alumnoRef);
-  querySnapshot.forEach((doc) => {
-    let alumno = {};
-    let r = doc.data(); //r = ruta
-    alumno.id = r.id;
-    alumno.foto = r.foto;
-    alumno.nombreCompleto = r.nombre + " " + r.apellido;
-    alumno.grupo = r.grupo;
-    alumno.estado = false;
-    //Enviar el objeto a la lista de alumnos
-    listar(alumno);
-  });
-};
-
-// AGREGA LISTA DE TARJETAS
-const listar = (alumno) => {
-  return LISTADOS.value.push(alumno);
-};
 
 //GUARDAR PRESENTES
 const guardarPresentes = async (data) => {
-  // let presentes = [];
-  // PRESENTES.value.map((alumno) => presentes.push(alumno.id));
-  // return presentes;
   const registrar = await doc(db, "ASISTENCIA", FECHA.value); // "2022-03-03"
   return await updateDoc(registrar, {
     FECHA: FECHA.value, //FECHA.value
-    listado: arrayUnion({
+    listaPresentes: arrayUnion({
       nombreCompleto: data.nombreCompleto,
       estado: true,
       id: data.id,
     }),
   });
-  // return resultado;
 };
 
 //GUARDAR AUSENTES
 const guardarAusentes = async (data) => {
-  // let ausentes = [];
-  // AUSENTES.value = LISTADOS.value.map((alumno) => ausentes.push(alumno.id));
-  // return ausentes;
-  const registrar = await doc(db, "ASISTENCIA", FECHA.value); // "2022-03-03"
-  return await updateDoc(registrar, {
+  const asistencia = await doc(db, "ASISTENCIA", FECHA.value); // "2022-03-03"
+  await updateDoc(asistencia, {
     FECHA: FECHA.value, //FECHA.value
-    listado: arrayUnion({
+    listaAusentes: arrayUnion({
       nombreCompleto: data.nombreCompleto,
       estado: false,
       id: data.id,
     }),
   });
-  // return resultado;
+};
+
+const limpiarColumna = () => {
+  PRESENTES.value = []; //Limpiar la columna de presentes
+  LISTADOS.value = []; //Limpiar la columna de listados
+  return;
 };
 
 //GUARDAR EN FIREBASE
 const guardar = async () => {
-  if (CLASE.value !== "") {
-    // let listado = {};
-    // listado.presentes = guardarPresentes();
-    // listado.ausentes = guardarAusentes();
-    // await setDoc(doc(db, "ASISTENCIA", FECHA.value), listado);
+  if (GRUPO.value !== "") {
     await setDoc(doc(db, "ASISTENCIA", FECHA.value), {
       FECHA: FECHA.value,
-      CLASE: CLASE.value,
+      GRUPO: selected.value,
     });
     try {
       PRESENTES.value.map(async (data) => {
@@ -151,73 +208,48 @@ const guardar = async () => {
     }
     return alert("Listado Actualizado");
   } else {
-    alert("Debes seleccionar una Clase");
+    alert("Debes seleccionar una GRUPO");
   }
 };
 
-//INICIAR POR FECHA
-const init = async () => {
-  let listadoRef = collection(db, "ASISTENCIA");
-  let q = query(listadoRef, where("FECHA", "==", FECHA.value)); //"2022-03-03"
-  let querySnapshot = await getDocs(q);
-  if (querySnapshot.empty) {
-    PRESENTES.value = [];
-    LISTADOS.value = [];
-    fetchAlumnos();
-    return;
-  } else {
-    // fetchAlumnos();
-    return await llenarListado(querySnapshot.docs[0].data());
-  }
+/*
+[FETCHALUMNOS] PROCESO NUMERO 2:
+
+1. RECIBE A LOS ALUMNOS ENCONTRADOS DESDE [INIT]
+2. CREA UNA TARJETA DE CADA ALUMNO
+3. SE ENVIA LA TARJETA A [LISTAR] PARA SER APILADOS
+*/
+const fetchAlumnos = async (data) => {
+  let alumno = {
+    id: data.id,
+    foto: data.foto,
+    nombreCompleto: data.nombre + " " + data.apellido,
+    grupo: data.grupo,
+    estado: false,
+  };
+  llenarListado(alumno);
+  // listar(alumno);
+};
+
+/*
+//[LISTAR] PROCESO NUMERO 3:
+
+1. RECIBE LOS ALUMNOS DESDE FILTRADOS DESDE [FETCH ALUMNOS]
+2. CREA UNA COLUMNA DE ALUMNOS CON ESTADO FALSE
+3. AL SER CLICKEADO SE PASAN A LA COLUMNAS DE ALUMNOS PRESENTES O AUSENTES
+*/
+const listar = (alumno) => {
+  return LISTADOS.value.push(alumno);
 };
 
 //LLenar listado de presentes y ausentes
 const llenarListado = async (r) => {
-  PRESENTES.value = [];
-  LISTADOS.value = [];
-  console.log(r);
-  r.listado.map((el) => {
-    if (el.estado) {
-      searchAlumno(el.id).then((alumno) => {
-        PRESENTES.value.push({
-          ...el,
-          foto: alumno.foto,
-        });
-      });
-    } else {
-      searchAlumno(el.id).then((alumno) => {
-        LISTADOS.value.push({
-          ...el,
-          foto: alumno.foto,
-        });
-      });
-    }
+  searchAlumno(r.id).then((alumno) => { 
+    LISTADOS.value.push({foto:alumno.foto,...r});
   });
-  // });
-  // r.ausentes.map((id) => {
-  //   algo(id);
-  //   searchAlumno(id).then(() => {
-  //     // LISTADOS.value.push({
-  //     //   ...alumno,
-  //     //   nombreCompleto: alumno.nombre + " " + alumno.apellido,
-  //     // });
-  //   });
-  // });
-};
+}
 
-const algo = (id) => {
-  fetchAlumnos().then(() => {
-    LISTADOS.value.map((alumno) => {
-      if (alumno.id !== id) {
-        // LISTADOS.value.splice(LISTADOS.value.indexOf(alumno), 1);
-        LISTADOS.value.push({
-          ...alumno,
-          nombreCompleto: alumno.nombre + " " + alumno.apellido,
-        });
-      }
-    });
-  });
-};
+    
 </script>
 <template>
   <div class="fixed top-14 mt-2 h-full w-full">
@@ -227,11 +259,14 @@ const algo = (id) => {
         class="w-1/3 px-1 text-left text-xs font-medium text-gray-500 uppercase"
       >
         <!-- ADD SELECT LIST -->
+
         <select
+          v-model="selected"
           class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-1 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
         >
-          <option v-for="option in CLASE" :value="option.value">
-            {{ option.text }}
+          <option value="TODOS">TODOS</option>
+          <option v-for="option in GRUPO" :key="option.id" :value="option">
+            {{ option }}
           </option>
         </select>
       </div>
@@ -250,25 +285,25 @@ const algo = (id) => {
 
         <button
           type="button"
-          :hidden="FECHA !== FECHAHOY"
-          class="bg-green-600 hover:bg-green-700 text-white font-bold py-2  px-1 rounded-full shadow-xl"
+          :hidden="EDITABLE"
+          class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-1 rounded-full shadow-xl"
           @click="guardar()"
         >
           Guardar
         </button>
       </div>
-    </div>
 
-    <div
-      class="grid grid-cols-2 gap-1 mt-1 sm:-mx-6 lg:-mx-8 absolute top-16 bottom-16 overflow-y-auto"
-    >
-      <div>
-        <!-- TABLA DE ALUMNOS -->
-        <Listado />
-      </div>
-      <div>
-        <!-- TABLA DE ASISTENCIA -->
-        <Estado />
+      <div
+        class="flex gap-1 mt-1 sm:-mx-6 lg:-mx-8 absolute top-16 bottom-28 overflow-y-auto"
+      >
+        <div>
+          <!-- TABLA DE ALUMNOS -->
+          <Listado />
+        </div>
+        <div>
+          <!-- TABLA DE ASISTENCIA -->
+          <Estado />
+        </div>
       </div>
     </div>
   </div>

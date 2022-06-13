@@ -19,13 +19,13 @@ const addPresent = (item) => {
 </script>
 
 <template>
-  <div>
+  <div class="">
     <div class="pt-1 m-1 align-middle inline-block sm:px-6 lg:px-8">
       <div class="shadow-md sm:rounded-lg">
-        <table class="w-full divide-gray-300">
+        <table class="w-44 divide-gray-300">
           <thead>
             <h1
-              class="text-black mx-3 px-6 py-3 text-xs font-medium uppercase tracking-wider text-center"
+              class="text-black mx-3 px-6 py-3 text-center text-xs font-medium uppercase tracking-wider"
             >
               LISTADO
             </h1>
@@ -35,22 +35,28 @@ const addPresent = (item) => {
             <tr
               v-for="item in LISTADOS"
               :key="item.id"
-              class="hover:bg-violet-400 active:bg-violet-600 border-b border-gray-400 flex gap-1 items-center justify-items-center align-middle"
+              class="hover:bg-violet-400 active:bg-violet-600 border-b border-gray-400 flex gap-1"
               @click="add(item)"
             >
-              <td class="flex-shrink-0 w-12 pt-1">
-                <img class="rounded-full" :src="item.foto" alt="" />
-              </td>
-              <th class="items-center">
-                <div class="p-1">
-                  <div class="text-[12px] font-medium text-black">
+              <div class="flex-none h-14">
+                <td v-if="item.foto">
+                  <img class="rounded-full w-10 h-10" :src="item.foto" alt="" />
+                </td>
+                <td v-else="item.foto">
+                  <img
+                    class="rounded-full w-10 h-10"
+                    src="https://firebasestorage.googleapis.com/v0/b/orquestapuntacana.appspot.com/o/fotos%2Ffoto-incognito.jpg?alt=media&token=f5b82a7c-7508-42e1-891f-14c3f554a26b"
+                    alt=""
+                  />
+                </td>
+              </div>
+              <div class="flex items-center grow justify-center">
+                <th>
+                  <div class="text-[14px] font-medium text-black">
                     {{ item.nombreCompleto }}
                   </div>
-                  <div class="text-[10px] text-gray-500 font-sans">
-                    {{ item.grupo }}
-                  </div>
-                </div>
-              </th>
+                </th>
+              </div>
             </tr>
           </tbody>
         </table>

@@ -13,8 +13,6 @@ import {
   deleteDoc,
   doc,
   getDoc,
-  setDoc,
-  updateDoc,
 } from "firebase/firestore";
 
 import { getStorage } from "firebase/storage";
@@ -78,11 +76,9 @@ export const writeUserData = (id, valor) => {
 //  */
 export const saveAlumno = async (newAlumno) => {
   try {
-    const docRef = await addDoc(collection(db, "ALUMNOS"), newAlumno).then(
-      () => {
-        alert("Alumno Guardado");
-      }
-    );
+    await addDoc(collection(db, "ALUMNOS"), newAlumno).then(() => {
+      alert("Alumno Guardado");
+    });
     return true;
   } catch (error) {
     alert(error.message);
@@ -145,15 +141,24 @@ export const getAlumnos = async () => {
     console.log(error);
   }
 };
-// Buscar Alumnos por ID
-export const searchAlumno = async (id) => {
+
+export const getAsignaturas = async () => {
   try {
-    let alumnoRef = collection(db, "ALUMNOS");
-    let q = query(alumnoRef, where("id", "==", id));
-    let querySnapshot = await getDocs(q);
-    let alumno = querySnapshot.docs[0].data();
-    return alumno;
+    let asignaturasRef = collection(db, "ASIGNATURAS");
+    return await getDocs(asignaturasRef);
   } catch (error) {
     console.log(error);
   }
+};
+
+export const searchAlumno = async (id) => {
+  try {
+    let alumnosRef = collection(db, "ALUMNOS");
+    let q = query(alumnosRef, where("id", "==", id));
+    const querySnapshot = await getDocs(q);
+    return querySnapshot.docs[0].data();
+  } catch (error) {
+    console.log(error);
+  }
+  //  return null
 };

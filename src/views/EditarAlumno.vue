@@ -10,7 +10,7 @@
         <div class="grid grid-cols-2 gap-2">
           <div class="form-group p-3">
             <input
-              v-model.trim="newAlumno.nombre"
+              v-model.trim="ALUMNO.nombre"
               type="text"
               class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
               id="nombre"
@@ -19,7 +19,7 @@
           </div>
           <div class="form-group p-3">
             <input
-              v-model.trim="newAlumno.apellido"
+              v-model.trim="ALUMNO.apellido"
               type="text"
               class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
               id="apellidos"
@@ -31,7 +31,7 @@
         <div class="flex justify-between rounded-md">
           <div class="form-group p-3">
             <input
-              v-model.trim="newAlumno.cedula"
+              v-model.trim="ALUMNO.cedula"
               type="text"
               class="form-control block w-32 px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
               id="cedula"
@@ -40,7 +40,7 @@
           </div>
           <div class="form-group p-3">
             <input
-              v-model.trim="newAlumno.instrumento"
+              v-model.trim="ALUMNO.instrumento"
               type="text"
               class="form-control px-3 py-1.5 w-32 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
               id="cedula"
@@ -52,7 +52,7 @@
           <textarea
             rows="4"
             cols="50"
-            v-model.trim="newAlumno.direccion"
+            v-model.trim="ALUMNO.direccion"
             class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
             placeholder="Direccion"
           ></textarea>
@@ -60,7 +60,7 @@
 
         <div class="form-group mb-6 grid grid-cols-3 gap-2">
           <select
-            v-model="newAlumno.grupo"
+            v-model="ALUMNO.grupo"
             class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
           >
             <option disabled value="">Grupo</option>
@@ -70,20 +70,20 @@
           </select>
           <input
             type="text"
-            v-model.trim="newAlumno.telefono"
+            v-model.trim="ALUMNO.telefono"
             class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
             placeholder="Telefono"
           />
 
           <input
             type="text"
-            v-model.trim="newAlumno.edad"
+            v-model.trim="ALUMNO.edad"
             class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
             placeholder="Edad"
           />
 
           <select
-            v-model="newAlumno.sexo"
+            v-model="ALUMNO.sexo"
             class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
           >
             <option disabled value="">Sexo</option>
@@ -92,7 +92,7 @@
           </select>
           <input
             type="date"
-            v-model.trim="newAlumno.nacimiento"
+            v-model.trim="ALUMNO.nacimiento"
             class="form-control col-span-2 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
             placeholder="F. Nacimiento"
           />
@@ -101,20 +101,20 @@
           <div class="form-group mb-6">
             <input
               type="text"
-              v-model.trim="newAlumno.madre"
+              v-model.trim="ALUMNO.madre"
               class="form-control my-2 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
               placeholder="Nombre de la Madre"
             />
             <input
               type="text"
-              v-model.trim="newAlumno.madreCedula"
+              v-model.trim="ALUMNO.madreCedula"
               class="form-control my-2 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
               placeholder="Cedula de la Madre"
             />
 
             <input
               type="text"
-              v-model.trim="newAlumno.direccionTrabajoMadre"
+              v-model.trim="ALUMNO.direccionTrabajoMadre"
               class="form-control block my-2 w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
               placeholder="Direccion del trabajo de la Madre"
             />
@@ -123,20 +123,20 @@
           <div class="form-group mb-6">
             <input
               type="text"
-              v-model.trim="newAlumno.padre"
+              v-model.trim="ALUMNO.padre"
               class="form-control my-2 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
               id="Padre"
               placeholder="Nombre de Padre"
             />
             <input
               type="text"
-              v-model.trim="newAlumno.padreCedula"
+              v-model.trim="ALUMNO.padreCedula"
               class="form-control my-2 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
               placeholder="Cedula del Padre"
             />
 
             <input
-              v-model.trim="newAlumno.direccionTrabajoPadre"
+              v-model.trim="ALUMNO.direccionTrabajoPadre"
               type="text"
               class="form-control my-2 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
               placeholder="Direccion del trabajo de la Padre"
@@ -147,7 +147,7 @@
         <div class="grid grid-cols-2 gap-3 my-6">
           <div class="form-check">
             <input
-              v-model="newAlumno.representante"
+              v-model="ALUMNO.representante"
               class="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
               type="radio"
               name="madre"
@@ -162,7 +162,7 @@
           </div>
           <div class="form-check">
             <input
-              v-model="newAlumno.representante"
+              v-model="ALUMNO.representante"
               class="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
               type="radio"
               name="padre"
@@ -190,140 +190,45 @@
   </section>
 </template>
 
-<script>
-import { reactive } from "vue";
+<script setup>
+import { onMounted, ref } from "vue";
+import { updateAlumno, camposVacios, searchAlumno } from "../firebase";
+import { archivo, url } from "../views/subirImagen";
+import { useRouter } from "vue-router";
 import {
-  firebaseApp,
-  saveAlumno,
-  evitarDuplicados,
-  camposVacios,
-} from "../firebase";
-import {
-  getStorage,
-  ref,
-  uploadBytesResumable,
-  getDownloadURL,
-} from "firebase/storage";
+  getFirestore,
+  where,
+  query,
+  collection,
+  getDocs,
+  onSnapshot,
+  addDoc,
+  deleteDoc,
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc,
+} from "firebase/firestore";
+const id = useRouter().currentRoute._rawValue.params.id;
+const ALUMNO = ref({});
 
-// Create the file metadata
-/** @type {any} */
-const metadata = {
-  contentType: "image/jpeg",
-};
+onMounted(async () => {
+  await searchAlumno(id).then((alumno) => {
+    ALUMNO.value = alumno;
+  });
+});
 
-export default {
-  components: {},
-  setup() {
-    const items = reactive([]);
-    let file = reactive(null);
-    const newAlumno = reactive({
-      nombre: "",
-      apellido: "",
-      cedula: "",
-      instrumento: "",
-      direccion: "",
-      grupo: "",
-      telefono: "",
-      edad: "",
-      sexo: "",
-      nacimiento: "",
-      madre: "",
-      madreCedula: "",
-      direccionTrabajoMadre: "",
-      padre: "",
-      padreCedula: "",
-      direccionTrabajoPadre: "",
-      foto: null,
-      id: Date.now(),
-      representante: "",
-    });
-    const archivo = (e) => {
-      file = e.target.files[0];
-      const storage = getStorage(firebaseApp);
-      const storageRef = ref(storage, "fotos/" + file.name);
-      const uploadTask = uploadBytesResumable(storageRef, file, metadata);
-      // Listen for state changes, errors, and completion of the upload.
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {
-          // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-          const progress =
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log("Proceso de la carga " + progress + "% ");
-          switch (snapshot.state) {
-            case "paused":
-              console.log("Carga pausada");
-              break;
-            case "running":
-              console.log("Carga Completa");
-              break;
-          }
-        },
-        (error) => {
-          // A full list of error codes is available at
-          // https://firebase.google.com/docs/storage/web/handle-errors
-          switch (error.code) {
-            case "storage/unauthorized":
-              // User doesn't have permission to access the object
-              break;
-            case "storage/canceled":
-              // User canceled the upload
-              break;
-
-            // ...
-
-            case "storage/unknown":
-              // Unknown error occurred, inspect error.serverResponse
-              break;
-          }
-        },
-        () => {
-          // Upload completed successfully, now we can get the download URL
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            console.log("URL de descarga: " + downloadURL);
-            newAlumno.foto = downloadURL;
-          });
-        }
-      );
-    };
-    // LIMPIAR CAMPOS
-    const limpiar = () => {
-      newAlumno.nombre = "";
-      newAlumno.apellido = "";
-      newAlumno.direccion = "";
-      newAlumno.grupo = "";
-      newAlumno.telefono = "";
-      newAlumno.instrumento = "";
-      newAlumno.edad = "";
-      newAlumno.sexo = "";
-      newAlumno.nacimiento = "";
-      newAlumno.madre = "";
-      newAlumno.madreCedula = "";
-      newAlumno.direccionTrabajoMadre = "";
-      newAlumno.padre = "";
-      newAlumno.padreCedula = "";
-      newAlumno.direccionTrabajoPadre = "";
-      newAlumno.foto = null;
-      newAlumno.representante = "";
-      newAlumno.cedula = "";
-    };
-    const validar = async () => {
-      // console.log(await evitarDuplicados(newAlumno));
-      try {
-        camposVacios(newAlumno) //Comprobar si hay campos vacios
-          ? (await evitarDuplicados(newAlumno)) //Comprobar en la BD si ya existe
-            ? (await saveAlumno(newAlumno)) //Guardar en la BD
-              ? limpiar() //Limpiar los campos
-              : alert("Error al guardar")
-            : alert("Alumno duplicado")
-          : alert("Campos vacios");
-      } catch (error) {
-        alert("Ya existe un alumno con ese nombre");
-        alert(error);
-      }
-    };
-
-    return { items, newAlumno, validar, archivo };
-  },
+const validar = async () => {
+  try {
+    await archivo()
+      .getDownloadURL()
+      .then((url) => {
+        ALUMNO.value.foto = url;
+      });
+    const registrar = await doc(db, "ALUMNOS", data.id);
+    await updateDoc(registrar, ALUMNO); 
+  } catch (error) {
+    alert(error);
+  }
 };
 </script>

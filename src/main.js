@@ -9,7 +9,6 @@ import {
   faUserPlus,
   faSignInAlt,
   faSignOutAlt,
-  faAngleRight,
   faInfoCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
@@ -31,7 +30,6 @@ library.add([
   faSignInAlt,
   faSignOutAlt,
   faInfoCircle,
-  faAngleRight,
 ]);
 
 createApp(App)
